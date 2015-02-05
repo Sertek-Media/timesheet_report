@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Print Employees Timesheets -->
+        <record id="view_hr_timesheet_users_individual" model="ir.ui.view">
+            <field name="name">hr.analytical.timesheet.users.form</field>
+            <field name="model">hr.analytical.timesheet.users.individual</field>
+            <field name="arch" type="xml">
+                <form string="Monthly Employees Timesheet" version="7.0">
+                    <sheet>
+                        <group>
+                             <label for="month" string="Period"/>
+                             <div>
+                                <field name="month" class="oe_inline"/>
+                                <field name="year" class="oe_inline"/>
+                            </div>
+                            <field name="public_day_holiday" class = "oe_inline"/> 
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Print" name="print_report" type="object" class="oe_highlight" /> or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+       <record id="action_hr_timesheet_timesheet_report_user_indiviual" model="ir.actions.act_window">
+            <field name="name">Timesheet Reports</field>
+            <field name="res_model">hr.analytical.timesheet.users.individual</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name = "target">new</field>
+        </record>
+               
+        <record model="ir.values" id="make_timesheet_report_individual_wizard">
+            <field name="model_id" ref="hr.model_hr_employee" />
+            <field name="name">Timesheet Report</field>
+            <field name="key2">client_action_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_hr_timesheet_timesheet_report_user_indiviual'))" />
+            <field name="key">action</field>
+            <field name="model">hr.employee</field>
+        </record>        
+     </data>
+</openerp>

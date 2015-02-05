@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<template id="report_qweb_timesheet_repeat">
+            <style type="text/css">
+			
+			div{
+				font-size:10px;
+        		padding:2px
+            	word-wrap:break-word;
+            	}
+        	td {
+				font-size:10px;
+            	padding:2px
+            	word-wrap:break-word;
+			}
+			th {
+			padding:2px;
+			}
+			
+			.Row
+			{
+			    display:table;
+			    width: 100%; /*Optional*/
+			    table-layout: fixed; /*Optional*/
+			}
+			.Column1
+			{
+				text-align:center;
+				font-family: "Times New Roman";
+			    display: table-cell;
+			}
+			.Column2
+			{
+				font-family: "Times New Roman";
+				text-align:right;
+			}
+            	
+        	.dieu{
+            		-webkit-transform:translate(0,138px) rotateZ(-90deg) ;
+					max-width:20px;
+					font-size:12px;
+					line-height:70%;
+					font-weight:normal;
+            	}
+			.vertical{
+	-webkit-transform:translate(0,120px) rotateZ(-90deg) ;
+	max-width:20px;
+	font-size:12px;
+	line-height:70%;
+	font-weight:normal;
+			}
+			.vertical1{
+				-webkit-transform:translate(0px,99px) rotateZ(-90deg) ;
+				max-width:45px;
+				font-size:12px;
+				line-height:70%;
+				font-weight:normal;
+			}
+			.vertical2{
+				-webkit-transform:translate(0,140px)  ;
+				max-width:20px;
+				font-size:12px;
+				line-height:70%;
+				font-weight:normal;
+			}
+			.vertical3{
+				-webkit-transform:translate(0,133px)  ;
+				max-width:20px;
+				font-size:12px;
+				line-height:70%;
+				font-weight:normal;
+			}
+		.vertical4{
+				-webkit-transform:translate(0,154px)  ;
+				max-width:20px;
+				font-size:12px;
+				line-height:70%;
+				font-weight:normal;
+			}
+		.vertical5{
+			-webkit-transform:translate(0,133px) rotateZ(-90deg) ;
+			max-width:20px;
+			font-size:12px;
+			line-height:70%;
+			font-weight:normal;
+					}            	
+			
+            </style>
+			<t t-call="report.html_container">
+				<!--<t t-call="report.external_layout"> -->
+					<div class="oe_structure"/>
+			        <div class="page">
+							<div class = "Row">
+								<div class="Column"></div>
+								<h3 style = "border-bottom:1px solid #000000;" class = "Column1 text-center" t-esc="data['form']['company_id'][1]"></h3>
+								<div class="Column2" style="display:block;font-size:12">Patvirtinta</div>
+							</div>
+  							<div class="Row">
+							    <div class="Column"></div>
+							    <div class="Column1 text-center">Įmonės, įstaigos, organizacijos pavadinimas</div>
+							    <div class="Column2" style="display:block;font-size:12">Lietuvos Respublikos Vyriausybės</div>
+							</div>					
+							<div class="Row">
+							    <div class="Column"></div>
+							    <span style = "border-bottom:1px solid #000000;" class="Column1 text-center" t-esc = "data['form']['organization_unit'] or ''"></span>
+							    <div class="Column2" style="display:block;font-size:12">2004 m. sausio 27 d. nutarimu Nr. 78</div>
+							</div>	
+							<div class="Row">
+							    <div class="Column"></div>
+							    <span  class="Column1 text-center">Struktūrinio padalinio pavadinimas</span>
+							</div>		
+							<br/>
+							<div class="Row">
+							    <div class="Column"></div>
+							    <span style = "width:100%" class="Column1 text-center"><strong t-esc = "data['form']['heads']"></strong></span>
+							</div>	 
+
+					       <table style = "table-layout:fixed;overflow:hidden;page-break-inside:auto;">
+								<tr>
+									<th style="font-size:10;border-top: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px;max-width:20px" rowspan="5"   align="center" class = "text-center">Eil. Nr.</th>
+									<th style="font-size:10;border-top: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px;max-width:30px" rowspan="5"  align="center" class = "text-center">Tabe-lio Nr.</th>
+									<th style="font-size:10;border-top: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px;max-width:100px" rowspan="5"  align="center" class = "text-center">Vardas, Pavardė</th>
+									<th style="font-size:10;border-top: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px;max-width:100px" rowspan="5"  align="center" class = "text-center">Profesija (pareigos), kvalifikacinė kategorija</th>
+									<th style="font-size:10;border-top: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px;max-width:70px" rowspan="5"  align="center" class = "text-center">Numatytas darbo valandų skai    čius per mėn.</th>
+									<th style="font-size:10;border-top: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px;width:500px" height = "20" colspan="31" class = "text-center">Dienos</th>
+									<th style="font-size:10;border-top: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px;width:135px;"  colspan="9" align="center" class = "text-center">Faktiškai dirbta per mėn.</th>
+									<th style="font-size:10;border-top: 1px solid #000000; border-left: 1px solid #000000; border-right: 2px solid #000000;width:100px;" colspan="3"  align="center" class = "text-center">Neatvykimai</th>
+								</tr>
+							
+							  	<tr>
+  									<t t-set ="a" t-value = "get_data(data['form']['month'],data['form']['year'],data['form']['public_day_holiday'])"></t>
+								    <t t-foreach = "range(1,32)" t-as="line">
+										<t t-set = "style" t-value = "'border-top: 1px solid #000000; border-left: 1px solid #000000;font-size:10;width:15px;'"></t>
+										<t t-if = "a.get(line,False)">
+											<t t-if = "'P' in str(a.get(line,False)) or 'W' in str(a.get(line,False))">
+												<t t-set = "style" t-value = "'background-color:#FF9900;border-top: 1px solid #000000; border-left: 1px solid #000000;font-size:10;width:15px;'"></t>
+											</t>
+											<t t-if = "'N' in str(a.get(line,False)) or 'S' in str(a.get(line,False))">
+												<t t-set = "style" t-value = "'background-color:#FF8080;border-top: 1px solid #000000; border-left: 1px solid #000000;font-size:10;width:15px;'"></t>
+											</t>											
+										</t>
+										<td  t-att-style="style" rowspan="4" height="196" class = "text-center"><strong t-esc="line"></strong></td>
+									</t>
+									<td style="border-top: 1px solid #000000; border-bottom: 1px; border-left: 1px solid #000000; border-right: 1px;vertical-align:middle" rowspan="3" align="center" >
+										<div style="font-size:10px" class = "dieu text-center text-nowrap"><b>Dienų</b></div>
+									</td>
+									<td style="border-top: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px" colspan="8" align="center">Valandų</td>
+									<td style="border-top: 1px solid #000000; border-bottom: 1px ; border-left: 1px solid #000000; border-right: 2px solid #000000" colspan="3" align="center">į darbą</td>
+								</tr>
+								<tr>
+									<td style="border-top: 1px solid #000000;border-left: 1px solid #000000;width:10px" colspan="8" align="center">Iš jų</td>
+									<td style="border-top: 1px solid #000000;border-left: 1px solid #000000;width:10px" rowspan="4" align="center" >
+										<div style="font-size:10px" class = "vertical5 text-center text-nowrap"><b>Sutartinis žymėjimas</b></div>
+										<div style="font-size:10px" class="vertical4 text-center text-nowrap"><b>9</b></div>
+									</td> 
+									<td style="border-top: 1px solid #000000;border-left: 1px solid #000000;width:10px" rowspan="4" align="center" >
+										<div style="font-size:10px" class = "vertical5 text-center text-nowrap" ><b>Dienų skaičius</b></div>
+										<div style="font-size:10px" class="vertical4 text-center text-nowrap"><b>10</b></div>
+									</td>
+									<td style="border-top: 1px solid #000000;border-left: 1px solid #000000; border-right: 2px solid #000000;width:10px;" rowspan="4" align="center" >
+										<div style="font-size:10px" class = "vertical5 text-center text-nowrap"><b>Valandų skaičius</b></div>
+										<div style="font-size:10px" class="vertical4 text-center text-nowrap"><b>11</b></div> 
+									</td>
+								</tr>
+								<tr>
+									<td style="border-top: 1px solid #000000;border-left: 1px solid #000000;"  rowspan="4" valign="top"  >
+										<div style="font-size:10px" class="vertical text-center text-nowrap" valign="top"><b>Iš viso</b></div>
+										<div style="font-size:10px" class="vertical2 text-center text-nowrap"><b>1</b></div>
+									</td>
+									<td style="border-top: 1px solid #000000;  border-left: 1px solid #000000; " rowspan="4"  align="justify" >
+										<div style="font-size:10px" class ="vertical text-center text-nowrap"><b>Naktį</b></div>
+										<div style="font-size:10px" class="vertical2 text-center text-nowrap"><b>2</b></div>
+									</td>
+									<td style="border-top: 1px solid #000000;  border-left: 1px solid #000000;" rowspan="4"  align="justify" >
+										<div style="font-size:10px" class = "vertical text-center text-nowrap"><b>Viršvalandžių</b></div>
+										<div style="font-size:10px" class="vertical2 text-center text-nowrap"><b>3</b></div>
+									</td>
+									
+									<td style="border-top: 1px solid #000000;  border-left: 1px solid #000000;" rowspan="4"  valign="middle">
+										<div style="font-size:10px" class = "vertical text-center text-nowrap"><b>Nukrypimai nuo normalių</b></div>
+										<div style="font-size:10px" class = "vertical1 text-center text-nowrap"><b>darbo sąlygų</b></div>
+										<div style="font-size:10px" class="vertical3 text-center text-nowrap"><b>4</b></div>
+									</td>
+									<td style="border-top: 1px solid #000000;  border-left: 1px solid #000000;" rowspan="4"  valign="middle">
+										<div style="font-size:10px" class = "vertical text-center text-nowrap"><b>Budėjimas namuose</b></div>
+										<div style="font-size:10px" class="vertical2 text-center text-nowrap"><b>5</b></div>
+									</td>
+									<td style="border-top: 1px solid #000000;  border-left: 1px solid #000000; " rowspan="4"  valign="middle">
+										<div style="font-size:10px" class = "vertical text-center text-nowrap"><b>Budėjimas darbe</b></div>
+										<div style="font-size:10px" class="vertical2 text-center text-nowrap"><b>6</b></div>
+									</td>
+									<td style="border-top: 1px solid #000000;  border-left: 1px solid #000000;" rowspan="4"  valign="middle">
+										<div style="font-size:10px" class = "vertical text-center text-nowrap"><b>Poilsio dienomis</b></div>
+										<div style="font-size:10px" class="vertical2 text-center text-nowrap"><b>7</b></div>
+									</td>
+									<td style="border-top: 1px solid #000000;  border-left: 1px solid #000000;" rowspan="4"  align="justify" valign="middle">
+										<div style="font-size:10px" class = "vertical text-center text-nowrap"><b>Švenčių dienomis</b></div>
+										<div style="font-size:10px" class="vertical2 text-center text-nowrap"><b>8</b></div>
+									</td>
+								</tr>
+								<tbody>
+									<t t-set = "final_totals" t-value = "0.00"></t>
+									<t t-set = "counter" t-value = "0"></t>
+									<t t-foreach = "docs" t-as = "employee">
+										<tr style="page-break-inside:avoid">
+											<t t-set="counter" t-value = "counter+1"></t>
+											<t t-set = "b" t-value = "get_info(employee.user_id.id,data['form']['month'],data['form']['year'],data['form']['public_day_holiday'], employee.id)"></t>
+											<td style="border-top: 1px solid #000000;  border-left: 1px solid #000000;max-width:10px; " height="22" align="center" sdval="5" sdnum="16393;"><font face="Times New Roman"><span t-esc="counter"></span></font></td>
+											<td style="border-top: 1px solid #000000;  border-left: 1px solid #000000;max-width:10px; " align="center" sdval="27" sdnum="16393;"><font face="Times New Roman"><span t-esc = "employee.id"></span></font></td>
+											<td style="word-wrap:break-word;border-top: 1px solid #000000;  border-left: 1px solid #000000;max-width:100px;overflow:hidden "  align="left" class="text-center" ><span t-esc="employee.name"></span></td>
+											<td style="word-wrap:break-word;border-top: 1px solid #000000;  border-left: 1px solid #000000;max-width:60px; " align="center" ><font face="Times New Roman" t-esc ="b.get('job','')"></font></td>
+											<td style="border-top: 1px solid #000000;  border-left: 1px solid #000000;max-width:30px; " align="center"  sdnum="16393;"><span t-esc = "b.get('total',0)"></span></td>
+											<t t-foreach = "range(1,32)" t-as="o">	
+												<t t-set = "value" t-value = "b.get('month',False).get(o,0)"></t>
+												<t t-set = "style" t-value = "'font-size:8px;border-top: 1px solid #000000; border-left: 1px solid #000000;min-width:15px;'"></t>
+												<t t-if = "'P' in str(value)">
+													<t t-set = "style" t-value = "'font-size:8px;background-color:#FF9900;border-top: 1px solid #000000; border-left: 1px solid #000000;min-width:20px;'"></t>
+												</t>
+		    									<t t-if = "'W' in str(value)">
+		    										<t t-set = "value" t-value = "value.replace('W','')"></t>
+													<t t-set = "style" t-value = "'font-size:8px;background-color:#FF9900;border-top: 1px solid #000000; border-left: 1px solid #000000;min-width:20px;'"></t>
+												</t>
+		    									<t t-if = "'N' in str(value)">
+		    										<t t-set = "value" t-value = "value.replace('N','')"></t>
+													<t t-set = "style" t-value = "'font-size:8px;background-color:#FF8080;border-top: 1px solid #000000; border-left: 1px solid #000000;min-width:20px;'"></t>
+												</t>	
+		    									<t t-if = "'S' in str(value)">
+													<t t-set = "style" t-value = "'font-size:8px;background-color:#FF8080;border-top: 1px solid #000000; border-left: 1px solid #000000;min-width:20px;'"></t>
+												</t>	
+												<td  t-att-style = "style" class = "text-center" ><span t-esc = "value"></span></td>
+											</t>
+												<td style="border-top: 1px solid #000000;border-left: 1px solid #000000; " align="center"  sdnum="16393;"><font face="Times New Roman" t-esc = "b.get('count',0)"></font></td>
+												<td style="border-top: 1px solid #000000;  border-left: 1px solid #000000; " align="center"  sdnum="16393;"><font face="Times New Roman" t-esc = "b.get('total',0)"></font></td>
+												<t t-set = "final_totals" t-value = "add_sum_total(b.get('total',0))"></t>
+												<td style="border-top: 1px solid #000000;  border-left: 1px solid #000000; " align="center"><font face="Times New Roman"></font></td>
+												<td style="border-top: 1px solid #000000;  border-left: 1px solid #000000; " align="center"><font face="Times New Roman"></font></td>
+												<td style="border-top: 1px solid #000000;  border-left: 1px solid #000000; " align="center"><font face="Times New Roman"></font></td>
+												<td style="border-top: 1px solid #000000;  border-left: 1px solid #000000; " align="center"><font face="Times New Roman"></font></td>
+												<td style="border-top: 1px solid #000000;  border-left: 1px solid #000000; " align="center"><font face="Times New Roman"></font></td>
+												<td style="border-top: 1px solid #000000;  border-left: 1px solid #000000; " align="center"><font face="Times New Roman"></font></td>
+												<td style="border-top: 1px solid #000000;  border-left: 1px solid #000000; " align="center"><font face="Times New Roman"></font></td>
+												<td style="border-top: 1px solid #000000;  border-left: 1px solid #000000;" align="center"><font face="Times New Roman"></font></td>
+												<td style="border-top: 1px solid #000000;  border-left: 1px solid #000000;" align="center"><font face="Times New Roman"></font></td>
+												<td style="border-top: 1px solid #000000;  border-left: 1px solid #000000; border-right: 2px solid #000000; " align="center"><font face="Times New Roman"></font></td>										
+										</tr>
+									</t>
+									<tr style="page-break-inside:avoid">
+										<td  align="left" style="border-top: 1px solid #000000;"></td>
+										<td align="left" style="border-top: 1px solid #000000;"></td>
+										<td align="left" style="border-top: 1px solid #000000;"></td>
+										<td align="left" style="border-top: 1px solid #000000;"></td>
+										<td align="left" style="border-top: 1px solid #000000;"></td>
+										<td align="left" style="border-top: 1px solid #000000;"></td>
+										<td align="left" style="border-top: 1px solid #000000;"></td>
+										<td align="left" style="border-top: 1px solid #000000;"></td>
+										<td align="left" style="border-top: 1px solid #000000;"></td>
+										<td align="left" style="border-top: 1px solid #000000;"></td>
+										<td align="left" style="border-top: 1px solid #000000;"></td>
+										<td align="left" style="border-top: 1px solid #000000;"></td>
+										<td align="left" style="border-top: 1px solid #000000;"> </td>
+										<td align="left" style="border-top: 1px solid #000000;"></td>
+										<td align="left" style="border-top: 1px solid #000000;"></td>
+										<td align="left" style="border-top: 1px solid #000000;"></td>
+										<td align="left" style="border-top: 1px solid #000000;"></td>
+										<td align="left" style="border-top: 1px solid #000000;"></td>
+										<td align="left" style="border-top: 1px solid #000000;"><font face="Times New Roman"></font></td>
+										<td align="left" style="border-top: 1px solid #000000;"><font face="Times New Roman"></font></td>
+										<td align="left" style="border-top: 1px solid #000000;"><font face="Times New Roman"></font></td>
+										<td align="left" style="border-top: 1px solid #000000;"><font face="Times New Roman"></font></td>
+										<td align="left" style="border-top: 1px solid #000000;"><font face="Times New Roman"></font></td>
+										<td align="left" style="border-top: 1px solid #000000;"><font face="Times New Roman"></font></td>
+										<td align="left" style="border-top: 1px solid #000000;"><font face="Times New Roman"></font></td>
+										<td align="left" style="border-top: 1px solid #000000;"><font face="Times New Roman"></font></td>
+										<td align="left" style="border-top: 1px solid #000000;"><font face="Times New Roman"></font></td>
+										<td align="left" style="border-top: 1px solid #000000;"><font face="Times New Roman"></font></td>
+										<td align="left" style="border-top: 1px solid #000000;"><font face="Times New Roman"></font></td>
+										<td style="border-left:1px solid #000000;border-top:1px solid #000000;border-bottom:1px solid #000000;padding:3px" colspan="8" align="left"  ><b><font face="Times New Roman">Iš viso per mėnesį </font></b></td>
+										<td style="font-size:8px;border-top:1px solid #000000;border-bottom:1px solid #000000;" align="center"><span t-esc="add_sum_total(0)"></span></td>
+										<td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000;border-top: 1px solid #000000; " align="center"><font face="Times New Roman"></font></td>
+										<td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000;border-top: 1px solid #000000; " align="center"><font face="Times New Roman"></font></td>
+										<td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000;border-top: 1px solid #000000;" align="center"><font face="Times New Roman"></font></td>
+										<td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000;border-top: 1px solid #000000; " align="center"><font face="Times New Roman"></font></td>
+										<td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000;border-top: 1px solid #000000; " align="center"><font face="Times New Roman"></font></td>
+										<td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000;border-top: 1px solid #000000; " align="center"><font face="Times New Roman"></font></td>
+										<td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000;border-top: 1px solid #000000; " align="center"><font face="Times New Roman"></font></td>
+										<td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000;border-top: 1px solid #000000; " ></td>
+										<td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000;border-top: 1px solid #000000; " align="center"><font face="Times New Roman"></font></td>
+										<td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000;border-right: 2px solid #000000;border-top: 1px solid #000000; " align="center" sdval="0" sdnum="16393;"><font face="Times New Roman"></font></td>
+									</tr>
+									<br/>
+									<br/>
+									<tr rowspan="4" style="page-break-inside:avoid;">
+										<td  style="height:60px;vertical-align:bottom;text-decoration:overline"  colspan='11' ><font face="Times New Roman" >(Darbdavio arba jo įgalioto atstovo pareigų pavadinimas)</font></td>
+										<td align="left"></td>
+										<td align="left"></td>
+										<td align="left"></td>
+										<td align="left"></td>
+										<td style="height:60px;vertical-align:bottom;text-decoration:overline" colspan='12' align="center"><font face="Times New Roman" >&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;(Parašas)&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</font></td>
+										<td align="left"></td>
+										<td align="left"></td>
+										<td align="left"></td>
+										<td align="left"></td>
+										<td align="left"></td>
+										<td style="height:60px;vertical-align:bottom;text-decoration:overline" colspan='16' align="center"><font face="Times New Roman" >&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;(Vardas ir pavardė)&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</font></td>
+									</tr>
+								</tbody>
+							</table> 
+<!--  							<div style="page-break-inside:avoid" class = "Row">
+								<div style = "border-top:1px solid #000000;font-size:10px" align="left" class = "text-left">(Darbdavio arba jo įgalioto atstovo pareigų pavadinimas)</div>
+								<div style = "border-top:1px solid #000000;font-size:10px" class = "Column1 text-center">    (Parašas)    </div>
+								<div style = "border-top:1px solid #000000;font-size:10px" align="right" class = "Column2 text-right">    (Vardas ir pavardė)    </div>
+							</div>-->
+						</div>				
+					<!--</t>-->
+				</t>
+		</template>
+		<report id="report_qweb_timesheet_report_register"
+		        string="Timesheet Report"
+                model="hr.analytical.timesheet.users.multi"
+			    report_type="qweb-pdf"
+			    file="timesheet_report.timesheet_form_report"
+			    name="timesheet_report.report_qweb_timesheet_repeat" />	
+			    	
+		<!-- Header Format -->
+		<record id = "timesheet_report_format" model = "report.paperformat">
+			<field name = "name">Timesheet Report Format</field>
+            <field name="default" eval="True" />
+            <field name="format">Letter</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">20</field>
+            <field name="margin_bottom">20</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">10</field>
+            <field name="dpi">90</field>			
+		</record> 
+
+		<record id="report_qweb_timesheet_report_register" model="ir.actions.report.xml">
+    	    <field name="paperformat_id" ref="timesheet_report.timesheet_report_format"/>
+    	</record>
+					
+	</data>
+</openerp>

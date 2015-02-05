@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data >
+		<report
+			auto="True"
+			id="timesheet_form_report"
+			model="hr.employee"
+			name="timesheet_form_report"
+			file="timesheet_report/report/timesheet_form_report.mako"
+			string="Timesheet Report"
+			report_type="webkit"
+			parser = "timesheet_report.report.timesheet_report.timesheet_report"/>			
+			<!-- menu = False stops the report to appear in the print menu -->
+   </data> 
+</openerp>
