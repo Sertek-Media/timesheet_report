@@ -276,7 +276,7 @@
 										<td align="left" style="border-top: 1px solid #000000;"><font face="Times New Roman"></font></td>
 										<td align="left" style="border-top: 1px solid #000000;"><font face="Times New Roman"></font></td>
 										<td style="border-left:1px solid #000000;border-top:1px solid #000000;border-bottom:1px solid #000000;padding:3px" colspan="8" align="left"  ><b><font face="Times New Roman">Iš viso per mėnesį </font></b></td>
-										<td style="font-size:8px;border-top:1px solid #000000;border-bottom:1px solid #000000;" align="center"><span t-esc="add_sum_total(0)"></span></td>
+										<td style="font-size:10px;border-top:1px solid #000000;border-bottom:1px solid #000000;" align="center"><span t-esc="add_sum_total(0)"></span></td>
 										<td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000;border-top: 1px solid #000000; " align="center"><font face="Times New Roman"></font></td>
 										<td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000;border-top: 1px solid #000000; " align="center"><font face="Times New Roman"></font></td>
 										<td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000;border-top: 1px solid #000000;" align="center"><font face="Times New Roman"></font></td>
