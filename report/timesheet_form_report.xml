@@ -213,20 +213,20 @@
 											<td style="border-top: 1px solid #000000;  border-left: 1px solid #000000;max-width:30px; " align="center"  sdnum="16393;"><span t-esc = "b.get('total',0)"></span></td>
 											<t t-foreach = "range(1,32)" t-as="o">	
 												<t t-set = "value" t-value = "b.get('month',False).get(o,0)"></t>
-												<t t-set = "style" t-value = "'font-size:8px;border-top: 1px solid #000000; border-left: 1px solid #000000;min-width:15px;'"></t>
+												<t t-set = "style" t-value = "'font-size:10px;border-top: 1px solid #000000; border-left: 1px solid #000000;min-width:25px;'"></t>
 												<t t-if = "'P' in str(value)">
-													<t t-set = "style" t-value = "'font-size:8px;background-color:#FF9900;border-top: 1px solid #000000; border-left: 1px solid #000000;min-width:20px;'"></t>
+													<t t-set = "style" t-value = "'font-size:10px;background-color:#FF9900;border-top: 1px solid #000000; border-left: 1px solid #000000;min-width:25px;'"></t>
 												</t>
 		    									<t t-if = "'W' in str(value)">
 		    										<t t-set = "value" t-value = "value.replace('W','')"></t>
-													<t t-set = "style" t-value = "'font-size:8px;background-color:#FF9900;border-top: 1px solid #000000; border-left: 1px solid #000000;min-width:20px;'"></t>
+													<t t-set = "style" t-value = "'font-size:10px;background-color:#FF9900;border-top: 1px solid #000000; border-left: 1px solid #000000;min-width:25px;'"></t>
 												</t>
 		    									<t t-if = "'N' in str(value)">
 		    										<t t-set = "value" t-value = "value.replace('N','')"></t>
-													<t t-set = "style" t-value = "'font-size:8px;background-color:#FF8080;border-top: 1px solid #000000; border-left: 1px solid #000000;min-width:20px;'"></t>
+													<t t-set = "style" t-value = "'font-size:10px;background-color:#FF8080;border-top: 1px solid #000000; border-left: 1px solid #000000;min-width:25px;'"></t>
 												</t>	
 		    									<t t-if = "'S' in str(value)">
-													<t t-set = "style" t-value = "'font-size:8px;background-color:#FF8080;border-top: 1px solid #000000; border-left: 1px solid #000000;min-width:20px;'"></t>
+													<t t-set = "style" t-value = "'font-size:10px;background-color:#FF8080;border-top: 1px solid #000000; border-left: 1px solid #000000;min-width:25px;'"></t>
 												</t>	
 												<td  t-att-style = "style" class = "text-center" ><span t-esc = "value"></span></td>
 											</t>
