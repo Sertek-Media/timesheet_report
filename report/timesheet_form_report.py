@@ -99,8 +99,6 @@ class timesheet_report_common(report_sxw.rml_parse):
         month = {}
         for presence in cr.dictfetchall():
             day = int(presence['date'][-2:])
-            print "===================",month.get(day, 0.0)
-            print "===================",presence['amount']
             month[day] = month.get(day, 0.0) + presence['amount']
             month[day] = round(month[day],2)
         total = 0.00
