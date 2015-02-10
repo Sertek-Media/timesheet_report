@@ -77,8 +77,17 @@ class timesheet_report_common(report_sxw.rml_parse):
         som = datetime.date(year, month_id, 1)
         eom = som + datetime.timedelta(self.lengthmonth(som.year, som.month))
         
+#         origininal query
+#                  "select line.date, (unit_amount ) as amount "\
+#         "from account_analytic_line as line, hr_analytic_timesheet as hr, "\
+#         "product_uom as unit "\
+#         "where hr.line_id=line.id "\
+#         "and product_uom_id = unit.id "\
+#         "and line.user_id=%s and line.date >= %s and line.date < %s "
+#         "order by line.date",
+        
         cr.execute(
-        "select line.date, (unit_amount / unit.factor) as amount "\
+         "select line.date, (unit_amount ) as amount "\
         "from account_analytic_line as line, hr_analytic_timesheet as hr, "\
         "product_uom as unit "\
         "where hr.line_id=line.id "\
@@ -90,6 +99,8 @@ class timesheet_report_common(report_sxw.rml_parse):
         month = {}
         for presence in cr.dictfetchall():
             day = int(presence['date'][-2:])
+            print "===================",month.get(day, 0.0)
+            print "===================",presence['amount']
             month[day] = month.get(day, 0.0) + presence['amount']
             month[day] = round(month[day],2)
         total = 0.00
